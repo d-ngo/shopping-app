@@ -1,0 +1,50 @@
+<div class="navbar navbar-expand-md navbar-dark bg-dark">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a routerLink="" class="navbar-brand">Recipe Book</a>
+    </div>
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li routerLinkActive="active"><a class="nav-link" routerLink="/recipes">Recipes</a></li>
+        <li routerLinkActive="active"><a class="nav-link" routerLink="/shopping-list">Shopping List</a></li>
+      </ul>
+      <ul class="nav navbar-nav ml-auto">
+        <ng-template [ngIf]="!isAuthenticated()">
+          <li routerLinkActive="active"><a class="nav-link" routerLink="/signin">Sign In</a></li>
+          <li routerLinkActive="active"><a class="nav-link" routerLink="/signup">Register</a></li>
+        </ng-template>
+        <ng-template [ngIf]="isAuthenticated()">
+          <li><a class="nav-link" style="cursor: pointer;" disabled>Hello {{getUser()}}</a></li>
+          <li><a class="nav-link" style="cursor: pointer;" (click)="onLogout()">Logout</a></li>
+          <li class="dropdown">
+            <a appDropdown style="cursor: pointer;" class="nav-link dropdown-toggle">Manage<span class="caret"></span></a>
+            <ul class="dropdown-menu bg-dark">
+              <li><a class="nav-link" (click)="onSaveData()" style="cursor: pointer;">Save Data</a></li>
+              <li><a class="nav-link" (click)="onFetchData()" style="cursor: pointer;">Fetch Data</a></li>
+            </ul>
+          </li>
+        </ng-template>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+<!-- 
+<div>
+  Like/Dislike component
+  <button 
+      #likedRef
+      class = "like-button"
+      (click)="onLikeClick()"
+      [ngClass]= "{liked: liked}">
+          Like | <span class="likes-counter">{{likeCounter}}</span>
+  </button>
+  <button 
+      #dislikeRef
+      class="dislike-button "
+      (click)="onDislikeClick()"
+      [ngClass]= "{disliked: disliked}">
+          Dislike | <span class="dislikes-counter">{{dislikeCounter}}</span>
+  </button>
+</div> -->
+
